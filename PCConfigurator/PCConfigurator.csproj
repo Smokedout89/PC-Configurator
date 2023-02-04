@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="JsonData\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,5 @@
 ﻿namespace PCConfigurator.Models
 {
-    using System.Text;
-
     public class Motherboard : Common
     {
         public string Socket { get; set; }

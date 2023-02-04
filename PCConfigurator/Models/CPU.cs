@@ -1,7 +1,5 @@
 ﻿namespace PCConfigurator.Models
 {
-    using System.Text;
-
     public class CPU : Common
     {
         public string SupportedMemory { get; set; }

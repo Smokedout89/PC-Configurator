@@ -1,7 +1,5 @@
 ﻿namespace PCConfigurator.Models
 {
-    using System.Text;
-
     public class Memory : Common
     {
         public string Type { get; set; }

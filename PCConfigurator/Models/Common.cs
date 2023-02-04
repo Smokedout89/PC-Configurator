@@ -1,7 +1,5 @@
 ﻿namespace PCConfigurator.Models
 {
-    using System.Text;
-
     public abstract class Common
     {
         public string ComponentType { get; set; }
