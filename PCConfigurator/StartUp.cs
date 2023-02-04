@@ -37,14 +37,9 @@
                 else if (userChoice == "create")
                 {
                     Console.Write(UserMessages.ChooseParts);
-                    string[] input = Console.ReadLine().Split(", ").ToArray();
+                    string[] componentsInput = Console.ReadLine().Split(", ").ToArray();
 
-                    var cpu = configuration.CPUs.FirstOrDefault(c => c.PartNumber == input[0]);
-                    var motherboard = configuration.Motherboards.FirstOrDefault(m => m.PartNumber == input[1]);
-                    var memory = configuration.Memory.FirstOrDefault(m => m.PartNumber == input[2]);
-                    
 
-                    Console.WriteLine(CreateConfiguration.ValidateConfiguration(cpu, motherboard, memory));
                 }
                 else
                 {
@@ -53,9 +48,9 @@
             }
         }
 
-        private static bool CheckIfCategoryIsValid(string input)
+        private static void ValidateComponentsInput(string[] componentsInput, Configuration configuration)
         {
-            return input is "cpu" or "memory" or "motherboard";
+
         }
 
         private static void DisplayCategory(string category, Configuration configuration)
@@ -72,6 +67,11 @@
                     Console.WriteLine(string.Join(' ', configuration.Motherboards));
                     break;
             }
+        }
+
+        private static bool CheckIfCategoryIsValid(string input)
+        {
+            return input is "cpu" or "memory" or "motherboard";
         }
     }
 }

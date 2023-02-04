@@ -21,7 +21,7 @@ public class CreateConfiguration
     // Check if configuration is valid, if not returns error.
     public static string ValidateConfiguration(CPU cpu, Motherboard motherboard, Memory memory)
     {
-        StringBuilder sb = new ();
+        StringBuilder sb = new();
 
         if (cpu.Socket != motherboard.Socket)
         {
@@ -45,13 +45,65 @@ public class CreateConfiguration
         IEnumerable<Motherboard> compatibleMotherboard =
             configuration.Motherboards.Where(m => m.Socket == cpu.Socket);
 
-        HashSet<CreateConfiguration> possibleConfigurations = new ();
+        HashSet<CreateConfiguration> possibleConfigurations = new();
 
         foreach (Memory memory in compatibleMemory)
         {
             foreach (Motherboard motherboard in compatibleMotherboard)
             {
-                var config = new CreateConfiguration(cpu, motherboard, memory);
+                CreateConfiguration config = new CreateConfiguration(cpu, motherboard, memory);
+                possibleConfigurations.Add(config);
+            }
+        }
+
+        return possibleConfigurations;
+    }
+
+    // Getting all possible configurations with only Motherboard entered.
+    public static HashSet<CreateConfiguration> GetAllConfigurations
+        (Motherboard motherboard, Configuration configuration)
+    {
+        IEnumerable<CPU> compatibleCPUs =
+            configuration.CPUs.Where(c => c.Socket == motherboard.Socket);
+        IEnumerable<Memory> compatibleMemory =
+            configuration.Memory.Where(m => m.Type == compatibleCPUs.First().SupportedMemory);
+
+        HashSet<CreateConfiguration> possibleConfigurations = new();
+
+        foreach (CPU cpu in compatibleCPUs)
+        {
+            foreach (Memory memory in compatibleMemory)
+            {
+                CreateConfiguration config = new CreateConfiguration(cpu, motherboard, memory);
+                possibleConfigurations.Add(config);
+            }
+        }
+
+        return possibleConfigurations;
+    }
+
+    // Getting all possible configurations with only Memory entered.
+    public static HashSet<CreateConfiguration> GetAllConfigurations
+        (Memory memory, Configuration configuration)
+    {
+        IEnumerable<CPU> compatibleCPUs =
+            configuration.CPUs.Where(c => c.SupportedMemory == memory.Type);
+        List<Motherboard> compatibleMotherboards = new List<Motherboard>();
+
+        foreach (CPU cpu in compatibleCPUs)
+        {
+            var motherboard = configuration.Motherboards.Where(m => m.Socket == cpu.Socket).ToHashSet();
+            compatibleMotherboards.AddRange(motherboard);
+        }
+
+        HashSet<Motherboard> motherboards = compatibleMotherboards.ToHashSet();
+        HashSet<CreateConfiguration> possibleConfigurations = new();
+
+        foreach (CPU cpu in compatibleCPUs)
+        {
+            foreach (Motherboard motherboard in motherboards.Where(m => m.Socket == cpu.Socket))
+            {
+                CreateConfiguration config = new CreateConfiguration(cpu, motherboard, memory);
                 possibleConfigurations.Add(config);
             }
         }
@@ -61,9 +113,9 @@ public class CreateConfiguration
 
     // Getting all possible configurations with CPU and Motherboard entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (CPU cpu, Motherboard motherboard, Configuration configuration)
+    (CPU cpu, Motherboard motherboard, Configuration configuration)
     {
-        IEnumerable<Memory> compatibleMemory = 
+        IEnumerable<Memory> compatibleMemory =
             configuration.Memory.Where(m => m.Type == cpu.SupportedMemory);
 
         HashSet<CreateConfiguration> possibleConfigurations = new();
@@ -81,7 +133,7 @@ public class CreateConfiguration
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (CPU cpu, Memory memory, Configuration configuration)
     {
-        IEnumerable<Motherboard> compatibleMotherboards = 
+        IEnumerable<Motherboard> compatibleMotherboards =
             configuration.Motherboards.Where(m => m.Socket == cpu.Socket);
 
         HashSet<CreateConfiguration> possibleConfigurations = new();
@@ -95,6 +147,23 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
+    // Getting all possible configurations with Motherboard and Memory entered.
+    public static HashSet<CreateConfiguration> GetAllConfigurations
+        (Motherboard motherboard, Memory memory, Configuration configuration)
+    {
+        IEnumerable<CPU> compatibleCPUs =
+            configuration.CPUs.Where(c => c.Socket == motherboard.Socket && c.SupportedMemory == memory.Type);
+
+        HashSet<CreateConfiguration> possibleConfigurations = new();
+
+        foreach (CPU cpu in compatibleCPUs)
+        {
+            CreateConfiguration config = new CreateConfiguration(cpu, motherboard, memory);
+            possibleConfigurations.Add(config);
+        }
+
+        return possibleConfigurations;
+    }
     public override string ToString()
     {
         return $"{Environment.NewLine}" +
