@@ -1,10 +1,20 @@
 ﻿namespace PCConfigurator.Models
 {
+    using System.Text;
+
     public class CPU : Common
     {
-        public string SupportedMemory { get; }
-        public string Socket { get; }
+        public string SupportedMemory { get; set; }
+        public string Socket { get; set; }
+
         public override string ToString()
-            => base.ToString() + $" with a socket {this.Socket} and supports {this.SupportedMemory}";
+        {
+            return base.ToString() +
+                   $"Supported memory: {this.SupportedMemory}{Environment.NewLine}" +
+                   $"Socket: {this.Socket}{Environment.NewLine}" +
+                   $"{Environment.NewLine}" +
+                   "***********" +
+                   $"{Environment.NewLine}";
+        }
     }
 }
