@@ -1,10 +1,9 @@
 ﻿namespace PCConfigurator
 {
-    using System.Text.Json;
-    using Models;
     using Utilities;
+    using System.Text.Json;
 
-    internal class Program
+    internal class StartUp
     {
         static void Main(string[] args)
         {
@@ -40,7 +39,12 @@
                     Console.Write(UserMessages.ChooseParts);
                     string[] input = Console.ReadLine().Split(", ").ToArray();
 
-                    Console.WriteLine(string.Join(' ', input));
+                    var cpu = configuration.CPUs.FirstOrDefault(c => c.PartNumber == input[0]);
+                    var motherboard = configuration.Motherboards.FirstOrDefault(m => m.PartNumber == input[1]);
+                    var memory = configuration.Memory.FirstOrDefault(m => m.PartNumber == input[2]);
+                    
+
+                    Console.WriteLine(CreateConfiguration.ValidateConfiguration(cpu, motherboard, memory));
                 }
                 else
                 {
@@ -51,12 +55,7 @@
 
         private static bool CheckIfCategoryIsValid(string input)
         {
-            if (input is "cpu" or "memory" or "motherboard")
-            {
-                return true;
-            }
-
-            return false;
+            return input is "cpu" or "memory" or "motherboard";
         }
 
         private static void DisplayCategory(string category, Configuration configuration)
