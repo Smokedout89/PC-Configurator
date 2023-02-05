@@ -1,11 +1,11 @@
-﻿namespace PCConfigurator;
+﻿namespace PCConfigurator.Configurations;
 
 using Models;
 using Utilities;
 
 public class ValidateConfiguration
 {
-                            // Displaying all possible configurations when only 1 param is entered.
+    // Displaying all possible configurations when only 1 param is entered.
     public static void ValidateConfigurationWithOneParam
         (string firstPart, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
@@ -52,7 +52,7 @@ public class ValidateConfiguration
 
         Console.WriteLine(UserMessages.UserChoices);
     }
-                            // Displaying all possible configurations when two params are entered.
+    // Displaying all possible configurations when two params are entered.
     public static void ValidateConfigurationWithTwoParams
         (string firstPart, string secondPart, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
@@ -179,11 +179,11 @@ public class ValidateConfiguration
 
         Console.WriteLine(UserMessages.UserChoices);
     }
-                            // Checking if the configuration with all params entered is valid
+    // Checking if the configuration with all params entered is valid
     public static void ValidateConfigurationWithThreeParams
         (string firstPart, string secondPart, string thirdPart, Configuration configuration)
     {
-        string errors = String.Empty;
+        string errors = string.Empty;
         CPU cpu = new();
         Motherboard motherboard = new();
         Memory memory = new();

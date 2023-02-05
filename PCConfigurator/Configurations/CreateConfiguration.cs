@@ -1,4 +1,4 @@
-﻿namespace PCConfigurator;
+﻿namespace PCConfigurator.Configurations;
 
 using Models;
 using Utilities;
@@ -8,9 +8,9 @@ public class CreateConfiguration
 {
     public CreateConfiguration(CPU cpu, Motherboard motherboard, Memory memory)
     {
-        this.CPU = cpu;
-        this.Memory = memory;
-        this.Motherboard = motherboard;
+        CPU = cpu;
+        Memory = memory;
+        Motherboard = motherboard;
     }
     public CPU CPU { get; }
     public Memory Memory { get; }
@@ -18,7 +18,7 @@ public class CreateConfiguration
 
     public decimal TotalPrice => CPU.Price + Memory.Price + Motherboard.Price;
 
-                            // Check if configuration is valid, if not returns error. 
+    // Check if configuration is valid, if not returns error. 
     public static string ValidateConfiguration(CPU cpu, Motherboard motherboard, Memory memory)
     {
         StringBuilder sb = new();
@@ -36,7 +36,7 @@ public class CreateConfiguration
         return sb.ToString().TrimEnd();
     }
 
-                            // Getting all possible configurations with only CPU entered.
+    // Getting all possible configurations with only CPU entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (CPU cpu, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
@@ -56,7 +56,7 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
-                            // Getting all possible configurations with only Motherboard entered.
+    // Getting all possible configurations with only Motherboard entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (Motherboard motherboard, Configuration configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
@@ -78,7 +78,7 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
-                            // Getting all possible configurations with only Memory entered.
+    // Getting all possible configurations with only Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (Memory memory, Configuration configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
@@ -107,7 +107,7 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
-                            // Getting all possible configurations with CPU and Motherboard entered.
+    // Getting all possible configurations with CPU and Motherboard entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (CPU cpu, Motherboard motherboard, Configuration configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
@@ -123,7 +123,7 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
-                            // Getting all possible configurations with CPU and Memory entered.
+    // Getting all possible configurations with CPU and Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (CPU cpu, Memory memory, Configuration configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
@@ -139,7 +139,7 @@ public class CreateConfiguration
         return possibleConfigurations;
     }
 
-                            // Getting all possible configurations with Motherboard and Memory entered.
+    // Getting all possible configurations with Motherboard and Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
         (Motherboard motherboard, Memory memory, Configuration configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
@@ -160,7 +160,7 @@ public class CreateConfiguration
                $"CPU: {CPU.Name} - {CPU.Socket}, {CPU.SupportedMemory}{Environment.NewLine}" +
                $"Motherboard: {Motherboard.Name} - {Motherboard.Socket}{Environment.NewLine}" +
                $"Memory: {Memory.Name} - {Memory.Type}{Environment.NewLine}" +
-               $"Price: {this.TotalPrice:f0}${Environment.NewLine}" +
+               $"Price: {TotalPrice:f0}${Environment.NewLine}" +
                $"{Environment.NewLine}" +
                "***********" +
                $"{Environment.NewLine}";

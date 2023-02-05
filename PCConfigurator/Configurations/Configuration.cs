@@ -1,4 +1,4 @@
-﻿namespace PCConfigurator;
+﻿namespace PCConfigurator.Configurations;
 
 using Models;
 
