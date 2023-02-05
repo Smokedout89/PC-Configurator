@@ -83,11 +83,12 @@ public class CreateConfiguration
     {
         IEnumerable<CPU> compatibleCPUs =
             configuration.CPUs.Where(c => c.SupportedMemory == memory.Type);
-        List<Motherboard> compatibleMotherboards = new List<Motherboard>();
+        List<Motherboard> compatibleMotherboards = new();
 
         foreach (CPU cpu in compatibleCPUs)
         {
-            var motherboard = configuration.Motherboards.Where(m => m.Socket == cpu.Socket).ToHashSet();
+            HashSet<Motherboard> motherboard
+                = configuration.Motherboards.Where(m => m.Socket == cpu.Socket).ToHashSet();
             compatibleMotherboards.AddRange(motherboard);
         }
 

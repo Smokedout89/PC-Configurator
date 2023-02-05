@@ -13,7 +13,7 @@
                    $"Component type: {this.ComponentType}{Environment.NewLine}" +
                    $"Part number: {this.PartNumber}{Environment.NewLine}" +
                    $"Name: {this.Name}{Environment.NewLine}" +
-                   $"Price: {this.Price}" +
+                   $"Price: {this.Price:f0}$" +
                    $"{Environment.NewLine}";
         }
     }

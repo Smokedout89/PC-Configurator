@@ -13,7 +13,6 @@
             var jsonData = File.ReadAllText("../../../JsonData/pc-store-inventory.json");
             Configuration configuration = JsonSerializer.Deserialize<Configuration>(jsonData);
 
-
             Console.WriteLine(UserMessages.WelcomeMessage);
             Console.WriteLine(UserMessages.UserChoices);
 
@@ -65,13 +64,13 @@
 
             if (componentsInput.Length == 0)
             {
-                Console.WriteLine("ERROR: Please enter at least one component.");
+                Console.WriteLine(ErrorMessages.NoComponents);
                 Console.WriteLine(UserMessages.UserChoices);
             }
 
             if (componentsInput.Length > 3)
             {
-                Console.WriteLine("ERROR: You can't enter more than 3 components.");
+                Console.WriteLine(ErrorMessages.TooManyComponents);
                 Console.WriteLine(UserMessages.UserChoices);
             }
 
@@ -91,7 +90,7 @@
                 string firstPart = componentsInput[0].ToLower();
                 string secondPart = componentsInput[1].ToLower();
                 string thirdPart = componentsInput[2].ToLower();
-                ValidateConfigurationWithThreeParams(firstPart,secondPart,thirdPart, configuration);
+                ValidateConfigurationWithThreeParams(firstPart, secondPart, thirdPart, configuration);
             }
         }
 
@@ -105,7 +104,7 @@
             {
                 CPU cpu = configuration.CPUs.First(p => p.PartNumber.ToLower() == firstPart);
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(cpu, configuration, possibleConfigurations);
             }
             else if (configuration.Motherboards.Any(p => p.PartNumber.ToLower() == firstPart))
@@ -113,28 +112,29 @@
                 Motherboard motherboard =
                     configuration.Motherboards.First(p => p.PartNumber.ToLower() == firstPart);
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(motherboard, configuration, possibleConfigurations);
             }
             else if (configuration.Memory.Any(p => p.PartNumber.ToLower() == firstPart))
             {
                 Memory memory = configuration.Memory.First(p => p.PartNumber.ToLower() == firstPart);
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(memory, configuration, possibleConfigurations);
             }
             else
             {
-                Console.WriteLine("ERROR: Please enter a valid part number.");
+                Console.WriteLine(ErrorMessages.InvalidPartNumber);
                 Console.WriteLine(UserMessages.UserChoices);
                 return;
             }
 
-            Console.WriteLine($"{Environment.NewLine}There are {configurations.Count} possible combinations:{Environment.NewLine}");
+            Console.WriteLine(string.Format(UserMessages.PossibleConfigurations, configurations.Count)
+                              + $"{Environment.NewLine}");
 
             foreach (var config in configurations.OrderByDescending(p => p.TotalPrice))
             {
-                Console.WriteLine($"Combination {index++}");
+                Console.WriteLine(string.Format(UserMessages.NumberOfCombination, index++));
                 Console.WriteLine(string.Join(' ', config.ToString()));
             }
 
@@ -160,7 +160,7 @@
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(cpu, motherboard, configuration, possibleConfigurations);
             }
             else if (configuration.CPUs.Any(p => p.PartNumber.ToLower() == firstPart)
@@ -176,7 +176,7 @@
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(cpu, memory, configuration, possibleConfigurations);
             }
             else if (configuration.Motherboards.Any(p => p.PartNumber.ToLower() == firstPart)
@@ -192,7 +192,7 @@
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(cpu, motherboard, configuration, possibleConfigurations);
             }
             else if (configuration.Motherboards.Any(p => p.PartNumber.ToLower() == firstPart)
@@ -206,12 +206,12 @@
 
                 if (cpus.Count == 0)
                 {
-                    Console.WriteLine("ERROR: Incompatible parts.");
+                    Console.WriteLine(ErrorMessages.IncompatibleParts);
                     Console.WriteLine(UserMessages.UserChoices);
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(motherboard, memory, configuration, possibleConfigurations);
             }
             else if (configuration.Memory.Any(p => p.PartNumber.ToLower() == firstPart)
@@ -227,7 +227,7 @@
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(cpu, memory, configuration, possibleConfigurations);
             }
             else if (configuration.Memory.Any(p => p.PartNumber.ToLower() == firstPart)
@@ -241,26 +241,27 @@
 
                 if (cpus.Count == 0)
                 {
-                    Console.WriteLine("ERROR: Incompatible parts.");
+                    Console.WriteLine(ErrorMessages.IncompatibleParts);
                     Console.WriteLine(UserMessages.UserChoices);
                     return;
                 }
 
-                configurations = 
+                configurations =
                     CreateConfiguration.GetAllConfigurations(motherboard, memory, configuration, possibleConfigurations);
             }
             else
             {
-                Console.WriteLine("ERROR: Please enter a valid part number.");
+                Console.WriteLine(ErrorMessages.InvalidPartNumber);
                 Console.WriteLine(UserMessages.UserChoices);
                 return;
             }
 
-            Console.WriteLine($"There are {configurations.Count} possible combinations:{Environment.NewLine}");
+            Console.WriteLine(string.Format(UserMessages.PossibleConfigurations, configurations.Count) +
+                              $"{Environment.NewLine}");
 
             foreach (var config in configurations.OrderByDescending(p => p.TotalPrice))
             {
-                Console.WriteLine($"Combination {index++}");
+                Console.WriteLine(string.Format(UserMessages.NumberOfCombination, index++));
                 Console.WriteLine(string.Join(' ', config.ToString()));
             }
 
