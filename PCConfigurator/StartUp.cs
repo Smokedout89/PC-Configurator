@@ -9,7 +9,7 @@
     {
         static void Main(string[] args)
         {
-                                    // Read data from json file and deserialize it.
+            // Read data from json file and deserialize it.
             var jsonData = File.ReadAllText("../../../JsonData/pc-store-inventory.json");
             Configuration configuration = JsonSerializer.Deserialize<Configuration>(jsonData);
 
@@ -19,7 +19,7 @@
             string userChoice;
             HashSet<CreateConfiguration> possibleConfigurations = new();
 
-                                    // Reading and checking what inputs the user provided.
+            // Reading and checking what inputs the user provided.
             while ((userChoice = Console.ReadLine().ToLower()) != "end")
             {
                 if (userChoice == "products")
@@ -57,7 +57,7 @@
                 }
             }
         }
-                                // Validating the input if the user is creating a configuration
+        // Validating the input if the user is creating a configuration
         private static void ValidateComponentsInput
             (string[] componentsInput, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
         {
@@ -94,7 +94,7 @@
                 ValidateConfiguration.ValidateConfigurationWithThreeParams(firstPart, secondPart, thirdPart, configuration);
             }
         }
-                                // Displaying all the available parts for the user selected category.
+        // Displaying all the available parts for the user selected category.
         private static void DisplayCategory(string category, Configuration configuration)
         {
             switch (category)
