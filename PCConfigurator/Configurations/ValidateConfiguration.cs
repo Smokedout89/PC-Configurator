@@ -7,7 +7,7 @@ public class ValidateConfiguration
 {
     // Displaying all possible configurations when only 1 param is entered.
     public static void ValidateConfigurationWithOneParam
-        (string firstPart, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
+        (string firstPart, ConfigurationData configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
         int index = 1;
         HashSet<CreateConfiguration> configurations = new HashSet<CreateConfiguration>();
@@ -54,7 +54,7 @@ public class ValidateConfiguration
     }
     // Displaying all possible configurations when two params are entered.
     public static void ValidateConfigurationWithTwoParams
-        (string firstPart, string secondPart, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
+        (string firstPart, string secondPart, ConfigurationData configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
         int index = 1;
         HashSet<CreateConfiguration> configurations = new HashSet<CreateConfiguration>();
@@ -181,7 +181,7 @@ public class ValidateConfiguration
     }
     // Checking if the configuration with all params entered is valid
     public static void ValidateConfigurationWithThreeParams
-        (string firstPart, string secondPart, string thirdPart, Configuration configuration)
+        (string firstPart, string secondPart, string thirdPart, ConfigurationData configuration)
     {
         string errors = string.Empty;
         CPU cpu = new();

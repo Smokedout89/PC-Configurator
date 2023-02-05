@@ -38,7 +38,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with only CPU entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (CPU cpu, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
+        (CPU cpu, ConfigurationData configuration, HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<Memory> compatibleMemory =
             configuration.Memory.Where(m => m.Type == cpu.SupportedMemory);
@@ -58,7 +58,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with only Motherboard entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (Motherboard motherboard, Configuration configuration,
+        (Motherboard motherboard, ConfigurationData configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<CPU> compatibleCPUs =
@@ -80,7 +80,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with only Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (Memory memory, Configuration configuration,
+        (Memory memory, ConfigurationData configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<CPU> compatibleCPUs =
@@ -109,7 +109,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with CPU and Motherboard entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (CPU cpu, Motherboard motherboard, Configuration configuration,
+        (CPU cpu, Motherboard motherboard, ConfigurationData configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<Memory> compatibleMemory =
@@ -125,7 +125,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with CPU and Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (CPU cpu, Memory memory, Configuration configuration,
+        (CPU cpu, Memory memory, ConfigurationData configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<Motherboard> compatibleMotherboards =
@@ -141,7 +141,7 @@ public class CreateConfiguration
 
     // Getting all possible configurations with Motherboard and Memory entered.
     public static HashSet<CreateConfiguration> GetAllConfigurations
-        (Motherboard motherboard, Memory memory, Configuration configuration,
+        (Motherboard motherboard, Memory memory, ConfigurationData configuration,
             HashSet<CreateConfiguration> possibleConfigurations)
     {
         IEnumerable<CPU> compatibleCPUs =

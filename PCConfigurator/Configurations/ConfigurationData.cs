@@ -2,7 +2,7 @@
 
 using Models;
 
-public class Configuration
+public class ConfigurationData
 {
     public IEnumerable<CPU> CPUs { get; set; }
     public IEnumerable<Memory> Memory { get; set; }

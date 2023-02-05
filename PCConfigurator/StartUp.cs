@@ -11,7 +11,7 @@
         {
             // Read data from json file and deserialize it.
             var jsonData = File.ReadAllText("../../../JsonData/pc-store-inventory.json");
-            Configuration configuration = JsonSerializer.Deserialize<Configuration>(jsonData);
+            ConfigurationData configuration = JsonSerializer.Deserialize<ConfigurationData>(jsonData);
 
             Console.WriteLine(UserMessages.WelcomeMessage);
             Console.WriteLine(UserMessages.UserChoices);
@@ -59,7 +59,7 @@
         }
         // Validating the input if the user is creating a configuration
         private static void ValidateComponentsInput
-            (string[] componentsInput, Configuration configuration, HashSet<CreateConfiguration> possibleConfigurations)
+            (string[] componentsInput, ConfigurationData configuration, HashSet<CreateConfiguration> possibleConfigurations)
         {
             possibleConfigurations = new();
 
@@ -95,7 +95,7 @@
             }
         }
         // Displaying all the available parts for the user selected category.
-        private static void DisplayCategory(string category, Configuration configuration)
+        private static void DisplayCategory(string category, ConfigurationData configuration)
         {
             switch (category)
             {
