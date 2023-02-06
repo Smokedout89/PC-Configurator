@@ -59,7 +59,8 @@
         }
         // Validating the input if the user is creating a configuration
         private static void ValidateComponentsInput
-            (string[] componentsInput, ConfigurationData configuration, HashSet<CreateConfiguration> possibleConfigurations)
+            (string[] componentsInput, ConfigurationData configuration, 
+                HashSet<CreateConfiguration> possibleConfigurations)
         {
             possibleConfigurations = new();
 
@@ -78,20 +79,26 @@
             if (componentsInput.Length == 1)
             {
                 string firstPart = componentsInput[0].ToLower();
-                ValidateConfiguration.ValidateConfigurationWithOneParam(firstPart, configuration, possibleConfigurations);
+
+                ValidateConfiguration.ValidateConfigurationWithOneParam
+                    (firstPart, configuration, possibleConfigurations);
             }
             else if (componentsInput.Length == 2)
             {
                 string firstPart = componentsInput[0].ToLower();
                 string secondPart = componentsInput[1].ToLower();
-                ValidateConfiguration.ValidateConfigurationWithTwoParams(firstPart, secondPart, configuration, possibleConfigurations);
+
+                ValidateConfiguration.ValidateConfigurationWithTwoParams
+                    (firstPart, secondPart, configuration, possibleConfigurations);
             }
             else if (componentsInput.Length == 3)
             {
                 string firstPart = componentsInput[0].ToLower();
                 string secondPart = componentsInput[1].ToLower();
                 string thirdPart = componentsInput[2].ToLower();
-                ValidateConfiguration.ValidateConfigurationWithThreeParams(firstPart, secondPart, thirdPart, configuration);
+
+                ValidateConfiguration.ValidateConfigurationWithThreeParams
+                    (firstPart, secondPart, thirdPart, configuration);
             }
         }
         // Displaying all the available parts for the user selected category.

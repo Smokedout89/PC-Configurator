@@ -10,5 +10,6 @@ public class ErrorMessages
     public const string TooManyComponents = "ERROR: You can't enter more than 3 components.";
     public const string IncompatibleMemory = "Memory of type {0} is not compatible with the CPU";
     public const string ConfigurationNotValid = "ERROR: The selected configuration is not valid.";
+    public const string InvalidComponent = "ERROR: There is invalid component in your configuration.";
     public const string IncompatibleMotherboard = "Motherboard with socket {0} is not compatible with the CPU.";
 }

@@ -248,6 +248,12 @@ public class ValidateConfiguration
 
             errors = CreateConfiguration.ValidateConfiguration(cpu, motherboard, memory);
         }
+        else
+        {
+            Console.WriteLine(ErrorMessages.InvalidComponent);
+            Console.WriteLine(UserMessages.UserChoices);
+            return;
+        }
 
         if (errors == string.Empty)
         {
