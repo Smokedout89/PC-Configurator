@@ -13,11 +13,13 @@ Program usage:
 
 Products: 
 
-    Customer will be prompted to choose one of our part categories and will be shown all available products that we have in stock.
+    Customer will be prompted to choose one of our part categories 
+    and will be shown all available products that we have in stock.
 
 Create: 
 
-    Customer will be able to enter part numbers for the different items, and check all the possible configurations. 
+    Customer will be able to enter part numbers for the different items, 
+    and check all the possible configurations. 
     
     Different parts should be separated with a ', ' and can be typed in any order.
   
@@ -25,7 +27,8 @@ Create:
     
     If one or two parts are entered customer will be shown all possible configurations with this part/s.
     
-    If all three parts are entered configuration will be validated and printed in console, or error messages will be shown.
+    If all three parts are entered configuration will be validated and printed in console, 
+    or error messages will be shown.
 
 End:
 
